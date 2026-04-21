@@ -1,0 +1,16 @@
+{
+    "name": "Happy Birthday Pappa🎉",
+    "short_name": "Pappa Bday",
+    "description": "A digital birthday celebration for Arif Daud Khan",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0a0f1c",
+    "theme_color": "#0a0f1c",
+    "icons": [
+        {
+            "src": "assets/icons/icon.svg",
+            "sizes": "192x192 512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}

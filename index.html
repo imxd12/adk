@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-blue">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Pappa 🎉</title>
+    <meta name="description" content="A special birthday experience for Arif Daud Khan">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0f1c">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+    <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Screen Flash Effect Wrapper -->
+    <div id="flash-overlay" class="flash-overlay"></div>
+
+    <!-- Crazy Magic Cursor Canvas -->
+    <canvas id="magic-canvas"></canvas>
+
+    <!-- Splash Screen (Cuter + Animated) -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            
+            <!-- Cute Bouncing Elements -->
+            <div class="cute-icons">
+                <span class="cute-icon" style="--delay: 0s">🎂</span>
+                <span class="cute-icon" style="--delay: 0.2s">✨</span>
+                <span class="cute-icon" style="--delay: 0.4s">🎉</span>
+                <span class="cute-icon" style="--delay: 0.6s">💖</span>
+            </div>
+
+            <h1 class="splash-title typing-title">Happy Birthday Pappa</h1>
+
+            <div class="splash-loading-container">
+                <div class="splash-text-fader" id="loading-text">Baking the cake...</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Background Elements -->
+    <div class="glass-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Floating music control (Modern Pill) -->
+    <div id="music-btn" class="floating-btn music-pill paused">
+        <div class="audio-waves">
+            <span class="wave"></span><span class="wave"></span><span class="wave"></span>
+        </div>
+        <span class="music-text" id="music-text">Play Song</span>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="assets/audio/bday-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Navigation (Floating Sticky Dock) -->
+    <nav id="floating-dock" class="floating-dock">
+        <div class="nav-container">
+            <div class="logo">AK</div>
+            
+            <div class="dock-actions">
+                <!-- Theme Toggle inside Dock -->
+                <div class="dock-theme-container">
+                    <button id="theme-btn" class="dock-btn theme-btn">
+                        <span class="icon">✨ Themes</span>
+                    </button>
+                    <div class="theme-palette" id="theme-palette">
+                        <div class="theme-option" data-theme="dark-blue" style="--t-color: #0a0f1c"></div>
+                        <div class="theme-option" data-theme="royal-gold" style="--t-color: #1c150a"></div>
+                        <div class="theme-option" data-theme="soft-pink" style="--t-color: #1f0b12"></div>
+                        <div class="theme-option" data-theme="neon-glow" style="--t-color: #0d0014"></div>
+                        <div class="theme-option" data-theme="matrix-green" style="--t-color: #001a09"></div>
+                        <div class="theme-option" data-theme="sunset-orange" style="--t-color: #1a0a00"></div>
+                    </div>
+                </div>
+
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#timer">Time With Us</a></li>
+            <li><a href="#cake-section">Celebration</a></li>
+            <li><a href="#message">Message</a></li>
+            <li>
+                <a href="https://wa.me/918097814934?text=Hello%20Beta!%20I%20just%20saw%20the%20beautiful%20birthday%20website%20you%20made%20for%20me.%20Thank%20you%20so%20much%20for%20this%20wonderful%20surprise!%20Love%20you!%20%E2%9D%A4%EF%B8%8F"
+                    target="_blank" class="nav-feedback-btn">
+                    Dad's Feedback 💬
+                </a>
+            </li>
+            <li id="nav-install-item" class="hidden">
+                <a href="#" id="nav-install-btn" class="nav-install-btn">Install App 📲</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- One-Time Birthday Greeting Popup -->
+    <div id="greeting-popup" class="custom-popup hidden">
+        <div class="glass-card popup-card gift-card">
+            <div class="gift-icon bounce-anim">🎁</div>
+            <h2>Special Delivery</h2>
+            <p>A very happy birthday to the best father.<br>Tap to open your digital gift.</p>
+            <button id="open-gift-btn" class="btn btn-primary pulse">Open Gift</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="hero-content glass-card fade-up">
+                <div class="subtitle fade-up stagger-1">Celebrating a Legend</div>
+                <h1 class="title fade-up stagger-2">Arif Daud Khan</h1>
+                <p class="tagline fade-up stagger-3">April 22nd, 1975</p>
+                <a href="#timer" class="btn btn-primary fade-up stagger-4">Start Celebration</a>
+            </div>
+
+            <div class="scroll-indicator fade-up stagger-4">
+                <span>Scroll</span>
+                <div class="arrow-down"></div>
+            </div>
+        </section>
+
+        <!-- Live Age Counter -->
+        <section id="timer" class="counter-section section">
+            <h2 class="section-title fade-up">A Lifetime of Brilliance</h2>
+            <p class="section-desc fade-up stagger-1">Time since the world became a better place:</p>
+
+            <div class="counter-grid glass-card auto-flip fade-up stagger-2">
+                <div class="time-box">
+                    <span id="c-years" class="number">00</span>
+                    <span class="label">Years</span>
+                </div>
+                <div class="time-box">
+                    <span id="c-months" class="number">00</span>
+                    <span class="label">Months</span>
+                </div>
+                <div class="time-box">
+                    <span id="c-days" class="number">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span id="c-hours" class="number">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span id="c-minutes" class="number">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="time-box">
+                    <span id="c-seconds" class="number">00</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Epic Cake Cutting Section -->
+        <section id="cake-section" class="cake-section section">
+            <h2 class="section-title fade-up">Make a Wish</h2>
+
+            <div class="cake-container fade-up stagger-1">
+                <!-- Revealed Text Behind Cake -->
+                <div class="cake-hidden-text" id="cake-revealed-text">Happy Birthday Pappa ❤️<br>51 Years of Greatness!</div>
+
+                <div class="cake" id="birthday-cake">
+                    <!-- 51 Custom Candles -->
+                    <div class="candle candle-5">
+                        <span class="candle-text">5</span>
+                        <div class="flame" id="flame-5"></div>
+                    </div>
+                    <div class="candle candle-1">
+                        <span class="candle-text">1</span>
+                        <div class="flame" id="flame-1"></div>
+                    </div>
+                    
+                    <!-- Left and Right sides of the cake for epic explosion slice animation -->
+                    <div class="cake-half slice-left">
+                        <div class="top-layer"></div>
+                        <div class="middle-layer"></div>
+                        <div class="bottom-layer"></div>
+                    </div>
+                    <div class="cake-half slice-right">
+                        <div class="top-layer"></div>
+                        <div class="middle-layer"></div>
+                        <div class="bottom-layer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="cut-cake-btn" class="btn btn-gold glow-effect fade-up stagger-2">Cut the Cake 🔪</button>
+        </section>
+
+        <!-- Emotional Message (Static, No Edit) -->
+        <section id="message" class="message-section section">
+            <div class="glass-card letter-card fade-up">
+                <h2 class="letter-title">Dear Pappa ❤️</h2>
+                <div class="typing-container">
+                    <p id="typed-message" class="typed-text"></p>
+                </div>
+                <!-- Hidden original text for typing animation -->
+                <div id="hidden-message" style="display:none;">
+                    Happy Birthday! 🎉<br><br>
+                    You are my strength, my inspiration, and my guiding light.
+                    Thank you for every sacrifice you've made and for always believing in me.
+                    I hope this year brings you as much joy and peace as you have given our family.<br><br>
+                    May all your wishes come true today and always. Love you infinitely. ❤️
+                </div>
+            </div>
+        </section>
+
+        <!-- Modern Footer -->
+        <footer class="modern-footer glass-card fade-up">
+            <div class="footer-content">
+                <p>Made with <span class="heart-anim">❤️</span> for Pappa</p>
+
+                <!-- WhatsApp Feedback Auto Message Button -->
+                <a href="https://wa.me/918097814934?text=Hello%20Beta!%20I%20just%20saw%20the%20beautiful%20birthday%20website%20you%20made%20for%20me.%20Thank%20you%20so%20much%20for%20this%20wonderful%20surprise!%20Love%20you!%20%E2%9D%A4%EF%B8%8F"
+                    target="_blank" class="btn btn-secondary btn-whatsapp mt-4">
+                    Send Love to Your Child 💬
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
